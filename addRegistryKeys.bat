@@ -1,6 +1,6 @@
 @echo off
 
-SET icon=%~dp0terminal.ico
+SET icon=%~dp0images\terminal.ico
 SET appFolder=%LocalAppData%\WTerminal\
 SET iconPath=%appFolder%terminal.ico
 
