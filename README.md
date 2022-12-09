@@ -1,2 +1,5 @@
 # windows-terminal-in-context-menu
-A short guide on how to add the Windows Terminal to the right-click context menu in Windows 10/11
+
+Nice and easy batch script to open Command line in Windows Terminal on the current location via the right-click context menu.
+
+The script needs to be run as administrator in order to work properly.
