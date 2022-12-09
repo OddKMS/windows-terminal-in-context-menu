@@ -1,0 +1,48 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "copy to windows temp folder",
+      "type": "shell",
+      "command": "rsync",
+      "args": [
+        "-r",
+        "-p",
+        "-i",
+        "${workspaceFolder}",
+        "/mnt/c/projects/tmp/",
+        "--exclude",
+        ".git"
+      ]
+    },
+    {
+      "label": "run batch script",
+      "type": "shell",
+      "command": "cmd.exe",
+      "args": [
+        "/c",
+        "'C:\\projects\\tmp\\${workspaceFolderBasename}\\${fileBasename}'"
+      ]
+    },
+    {
+      "label": "cleanup",
+      "type": "shell",
+      "command": "rm -rf /mnt/c/projects/tmp"
+    },
+    {
+      "label": "build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "copy to windows temp folder",
+        "run batch script",
+        "cleanup"
+      ]
+    }
+  ]
+}
