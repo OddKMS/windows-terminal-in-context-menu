@@ -1,8 +1,8 @@
 @echo off
 
-SET icon=%~dp0images\terminal.ico
-SET appFolder=%LocalAppData%\WTerminal\
-SET iconPath=%appFolder%terminal.ico
+SET icon=%~dp0images\wt.ico
+SET appFolder=%LocalAppData%\Microsoft\WindowsApps\
+SET iconPath=%appFolder%wt.ico
 
 IF NOT EXIST "%appFolder%" mkdir "%appFolder%"
 xcopy "%icon%" "%appFolder%" /Y
