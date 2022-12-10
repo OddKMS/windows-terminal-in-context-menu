@@ -47,15 +47,14 @@
   ECHO UAC.ShellExecute "%SystemRoot%\%winSysFolder%\cmd.exe", args, "", "runas", 1 >> "%vbsGetPrivileges%"
 
 :ExecElevation
- "%SystemRoot%\%winSysFolder%\WScript.exe" "%vbsGetPrivileges%" %*
- exit /B
+  "%SystemRoot%\%winSysFolder%\WScript.exe" "%vbsGetPrivileges%" %*
+  exit /B
 
 :gotPrivileges
- setlocal & cd /d %~dp0
- if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
-
- ::::::::::::::::::::::::::::
- ::START
- ::::::::::::::::::::::::::::
- REM Run shell as admin (example) - put here code as you like
- CMD /c %1
+  setlocal & cd /d %~dp0
+  if '%1'=='ELEV' (del "%vbsGetPrivileges%" 1>nul 2>nul  &  shift /1)
+  ::::::::::::::::::::::::::::
+  ::START
+  ::::::::::::::::::::::::::::
+  REM Run shell as admin (example) - put here code as you like
+  CMD /c %1
