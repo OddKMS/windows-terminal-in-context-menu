@@ -18,6 +18,7 @@
  rem this works also from cmd shell, other than %~0
  for %%k in (%0) do set batchName=%%~nk
  set "vbsGetPrivileges=%temp%\OEgetPriv_%batchName%.vbs"
+ set _outputText = ""
  setlocal EnableDelayedExpansion
 
 :checkPrivileges
@@ -48,7 +49,17 @@
 
 :ExecElevation
   "%SystemRoot%\%winSysFolder%\WScript.exe" "%vbsGetPrivileges%" %*
-  exit /B
+  GOTO :printOutput
+
+:printOutput
+    if "%_outputText%" == "Done" (
+      exit /b
+    ) else if "%_outputText%" == "" (
+      REM
+    ) else (
+      ECHO !%_outputText%!
+    )
+  GOTO :printOutput
 
 :gotPrivileges
   setlocal & cd /d %~dp0
@@ -57,4 +68,4 @@
   ::START
   ::::::::::::::::::::::::::::
   REM Run shell as admin (example) - put here code as you like
-  CMD /c %1
+  FOR /F "tokens=* USEBACKQ" %%f IN 'CALL %1' DO (SET _outputText=%%f)

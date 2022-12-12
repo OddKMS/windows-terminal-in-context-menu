@@ -11,7 +11,9 @@
         "-r",
         "-p",
         "-i",
+        //from
         "${workspaceFolder}",
+        //to
         "/mnt/c/projects/tmp/",
         "--exclude",
         ".git"
@@ -23,7 +25,7 @@
       "command": "cmd.exe",
       "args": [
         "/c",
-        "'C:\\projects\\tmp\\${workspaceFolderBasename}\\${fileBasename}'"
+        "'C:\\projects\\tmp\\${workspaceFolderBasename}\\src\\run.bat'"
       ]
     },
     {

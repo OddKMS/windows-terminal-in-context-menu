@@ -1,8 +1,9 @@
-@echo off
+@echo on
+setlocal EnableDelayedExpansion
 
 :findWindowsTerminal
-    ECHO.
-    ECHO **************************************
+    ECHO. 
+    SET _outputText = "Checking for Windows Terminal installation"
     ECHO Checking for Windows Terminal installation
     ECHO **************************************
     IF NOT EXIST "%LocalAppData%\Microsoft\WindowsApps\wt.exe" GOTO :windowsTerminalNotFound
@@ -16,7 +17,6 @@
 
 :copyIcon
     ECHO.
-    ECHO **************************************
     ECHO Copy Icon into Windows Terminal folder
     ECHO **************************************
     SET icon=%~dp0images\wt.ico
@@ -35,9 +35,9 @@
 
 :addRegistryKeys
     ECHO.
-    ECHO **************************************
     ECHO Adding Registry Keys
     ECHO **************************************
     REG ADD HKCR\Directory\background\shell\wt /d "Open Windows Terminal Here" /F
     REG ADD HKCR\Directory\background\shell\wt /v Icon /d "%iconPath%" /F
     REG ADD HKCR\Directory\background\shell\wt\command /d "%terminalPath%" /F
+    SET _outputText = "Done"
